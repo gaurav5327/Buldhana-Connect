@@ -2,6 +2,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom typography for Marathi text */
+@layer components {
+  .marathi-title {
+    line-height: 1.4 !important;
+    letter-spacing: 0.02em;
+  }
+  
+  .marathi-title br + span {
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  
+  .organization-name {
+    line-height: 1.5 !important;
+  }
+  
+  .organization-name span {
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
+
 @layer base {
      :root {
         /* Deep Royal Blue - Buddhist significance */

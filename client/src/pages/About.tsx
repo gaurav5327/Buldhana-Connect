@@ -25,21 +25,21 @@ const About = () => {
       <section className="py-20 gradient-hero">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-8 text-center lg:text-left">
-            <img 
-              src={mandalLogo} 
-              alt="बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई" 
+            <img
+              src={mandalLogo}
+              alt="बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई"
               className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover shadow-elevated border-4 border-accent/30 shrink-0"
             />
             <div>
               <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
                 आमच्याबद्दल
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6 marathi-title organization-name">
                 बुलढाणा जिल्हा बौद्ध रहिवासी<br />
-                <span className="text-accent mt-8">समाज मंडळ मुंबई</span>
+                <span className="text-accent">समाज मंडळ मुंबई</span>
               </h1>
               <p className="max-w-3xl text-primary-foreground/80 text-lg">
-                गेल्या दहा वर्षांपासून मुंबईतील बुलढाणा जिल्हावासियांच्या सेवेत कार्यरत - 
+                गेल्या दहा वर्षांपासून मुंबईतील बुलढाणा जिल्हावासियांच्या सेवेत कार्यरत -
                 शैक्षणिक, सामाजिक आणि सांस्कृतिक माध्यमातून समाजाची प्रगती
               </p>
             </div>
@@ -57,9 +57,9 @@ const About = () => {
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">आमचे ध्येय (Vision)</h2>
               <p className="text-muted-foreground leading-relaxed">
-                बुलढाणा जिल्ह्यातील प्रत्येक धम्म बांधवाला मुंबईसारख्या महानगरात 
-                आपलेपणाची भावना मिळावी, त्यांना योग्य मार्गदर्शन व मदत मिळावी 
-                आणि त्यांच्या प्रगतीत कोणतीही अडचण येऊ नये यासाठी एक मजबूत 
+                बुलढाणा जिल्ह्यातील प्रत्येक धम्म बांधवाला मुंबईसारख्या महानगरात
+                आपलेपणाची भावना मिळावी, त्यांना योग्य मार्गदर्शन व मदत मिळावी
+                आणि त्यांच्या प्रगतीत कोणतीही अडचण येऊ नये यासाठी एक मजबूत
                 सामाजिक आधार निर्माण करणे.
               </p>
             </div>
@@ -70,9 +70,9 @@ const About = () => {
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">आमचे उद्दिष्ट (Mission)</h2>
               <p className="text-muted-foreground leading-relaxed">
-                मुंबईला नोकरी, शिक्षण, आरोग्य उपचार किंवा इतर कामासाठी येणाऱ्या 
-                बुलढाणा जिल्हावासियांना योग्य ती मदत करणे, त्यांचे काम सोपे करणे 
-                आणि शैक्षणिक, सामाजिक व सांस्कृतिक कार्यक्रमांद्वारे समाजाला 
+                मुंबईला नोकरी, शिक्षण, आरोग्य उपचार किंवा इतर कामासाठी येणाऱ्या
+                बुलढाणा जिल्हावासियांना योग्य ती मदत करणे, त्यांचे काम सोपे करणे
+                आणि शैक्षणिक, सामाजिक व सांस्कृतिक कार्यक्रमांद्वारे समाजाला
                 एकत्र आणणे.
               </p>
             </div>
@@ -95,19 +95,19 @@ const About = () => {
 
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
               <p>
-                मुंबई ही महाराष्ट्राची राजधानी आहे. बुलढाणा जिल्ह्यातील अनेक धम्म बांधव 
-                नोकरी, शिक्षण, आरोग्य उपचार किंवा व्यवसायासाठी मुंबईला येतात. मुंबईसारख्या 
+                मुंबई ही महाराष्ट्राची राजधानी आहे. बुलढाणा जिल्ह्यातील अनेक धम्म बांधव
+                नोकरी, शिक्षण, आरोग्य उपचार किंवा व्यवसायासाठी मुंबईला येतात. मुंबईसारख्या
                 महानगरात नवीन व्यक्तीला योग्य मार्गदर्शन मिळणे कठीण असते.
               </p>
               <p>
-                जर वेळेवर योग्य मदत मिळाली तर त्यांचे काम लवकर होते - हीच संकल्पना 
-                घेऊन आम्ही मंडळाची स्थापना केली. आमच्या मंडळामध्ये डॉक्टर, इंजिनीयर, 
-                वकील, बिल्डर, उद्योजक तसेच मंत्रालयात मोठ्या पदावर अनेक लोक काम करतात. 
+                जर वेळेवर योग्य मदत मिळाली तर त्यांचे काम लवकर होते - हीच संकल्पना
+                घेऊन आम्ही मंडळाची स्थापना केली. आमच्या मंडळामध्ये डॉक्टर, इंजिनीयर,
+                वकील, बिल्डर, उद्योजक तसेच मंत्रालयात मोठ्या पदावर अनेक लोक काम करतात.
                 त्यामुळे कोणतेही काम असो, आपल्याला योग्य मार्गदर्शन मिळते.
               </p>
               <p>
-                आम्ही मुंबईच्या अनेक उपनगरांमध्ये - कल्याण, ठाणे, नवी मुंबई, चेंबूर, दादर, 
-                अंधेरी, बोरिवली, विरार, उल्हासनगर - जाऊन मीटिंग व स्नेहसंमेलन आयोजित करतो. 
+                आम्ही मुंबईच्या अनेक उपनगरांमध्ये - कल्याण, ठाणे, नवी मुंबई, चेंबूर, दादर,
+                अंधेरी, बोरिवली, विरार, उल्हासनगर - जाऊन मीटिंग व स्नेहसंमेलन आयोजित करतो.
                 आतापर्यंत आम्ही सहा ते सात हजार कुटुंबे जोडलेली आहेत.
               </p>
             </div>
@@ -162,7 +162,7 @@ const About = () => {
                   नोंदणीकृत धर्मादाय संस्था
                 </h2>
                 <p className="text-primary-foreground/80 mb-4">
-                  बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई ही एक नोंदणीकृत संस्था आहे. 
+                  बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई ही एक नोंदणीकृत संस्था आहे.
                   धर्मदाय आयुक्त कार्यालय, ठाणे येथे २०२२ साली आमची अधिकृत नोंदणी झाली आहे.
                 </p>
                 <p className="text-accent font-semibold">
@@ -178,9 +178,9 @@ const About = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12 mb-12">
-            <img 
-              src={babasahebImg} 
-              alt="डॉ. बाबासाहेब आंबेडकर" 
+            <img
+              src={babasahebImg}
+              alt="डॉ. बाबासाहेब आंबेडकर"
               className="w-48 h-48 rounded-2xl object-cover shadow-elevated border-4 border-primary/20 shrink-0"
             />
             <div className="text-center lg:text-left">
@@ -215,7 +215,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center p-8 rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5 border border-border">
             <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed">
-              "आम्ही केवळ एक संस्था नाही, आम्ही एक कुटुंब आहोत. 
+              "आम्ही केवळ एक संस्था नाही, आम्ही एक कुटुंब आहोत.
               बुलढाणा जिल्ह्यातील प्रत्येक धम्म बांधवाचे कल्याण हेच आमचे ध्येय."
             </p>
             <p className="mt-4 text-accent font-semibold">- बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ कार्यकारिणी</p>

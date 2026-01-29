@@ -66,10 +66,10 @@ const Index = () => {
               </div>
 
               {/* Main Title */}
-              <h1 className="animate-fade-up opacity-0 animation-delay-100 text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 leading-tight">
+              <h1 className="animate-fade-up opacity-0 animation-delay-100 text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 marathi-title organization-name">
                 बुलढाणा जिल्हा बौद्ध रहिवासी
                 <br />
-                <span className="text-accent mt-8">समाज मंडळ मुंबई</span>
+                <span className="text-accent">समाज मंडळ मुंबई</span>
               </h1>
 
               {/* Tagline */}

@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight, Download, Share2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import snehsammelanPoster from "@/assets/snehsammelan-2026-poster.jpeg";
 
@@ -89,6 +91,9 @@ import img84 from "@/assets/images/WhatsApp Image 2026-01-29 at 7.13.00 PM (2).j
 import img85 from "@/assets/images/WhatsApp Image 2026-01-29 at 7.13.00 PM.jpeg";
 
 const Gallery = () => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // All gallery images
   const allImages = [
     img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
@@ -113,6 +118,71 @@ const Gallery = () => {
       image: img
     }))
   ];
+
+  const openModal = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  };
+
+  const closeModal = () => {
+    setSelectedImageIndex(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'unset'; // Restore scrolling
+  };
+
+  const goToPrevious = () => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedImageIndex !== null && selectedImageIndex < galleryItems.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
+  };
+
+  // Add keyboard event listeners
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isModalOpen) return;
+
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, selectedImageIndex]);
+
+  const downloadImage = () => {
+    if (selectedImageIndex !== null) {
+      const link = document.createElement('a');
+      link.href = galleryItems[selectedImageIndex].image;
+      link.download = `${galleryItems[selectedImageIndex].title}.jpg`;
+      link.click();
+    }
+  };
+
+  const shareImage = async () => {
+    if (selectedImageIndex !== null && 'share' in navigator) {
+      try {
+        await navigator.share({
+          title: galleryItems[selectedImageIndex].title,
+          text: `${galleryItems[selectedImageIndex].title} - बुलढाणा मंडळ`,
+          url: window.location.href
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    }
+  };
 
   return (
     <Layout>
@@ -144,16 +214,17 @@ const Gallery = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {galleryItems.map((item) => (
+            {galleryItems.map((item, index) => (
               <div
                 key={item.id}
                 className="group relative aspect-[4/3] rounded-2xl bg-muted overflow-hidden cursor-pointer hover-lift"
+                onClick={() => openModal(index)}
               >
                 {/* Image */}
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
                 />
 
                 {/* Overlay */}
@@ -163,6 +234,7 @@ const Gallery = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
                   <p className="text-white font-semibold text-sm">{item.title}</p>
                   <p className="text-white/70 text-xs">{item.year}</p>
+                  <p className="text-white/60 text-xs mt-1">क्लिक करून पूर्ण आकारात पहा</p>
                 </div>
 
                 {/* Year Badge */}
@@ -170,6 +242,13 @@ const Gallery = () => {
                   <span className="px-2 py-1 rounded-full bg-black/50 text-white text-xs font-medium">
                     {item.year}
                   </span>
+                </div>
+
+                {/* Click Indicator */}
+                <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-4 h-4 border-2 border-white rounded-sm" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -203,7 +282,7 @@ const Gallery = () => {
                     height="100%"
                     src="https://www.youtube.com/embed/qDFdzBoN3nQ"
                     title="स्नेहसंमेलन २०२६ - मुख्य निमंत्रण"
-                    frameBorder="0"
+                    style={{ border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="w-full h-full"
@@ -226,7 +305,7 @@ const Gallery = () => {
                     height="100%"
                     src="https://www.youtube.com/embed/ooV4KkhKXF0"
                     title="स्नेहसंमेलन व्हिडिओ २"
-                    frameBorder="0"
+                    style={{ border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="w-full h-full"
@@ -243,7 +322,7 @@ const Gallery = () => {
                     height="100%"
                     src="https://www.youtube.com/embed/2Z8Q3yoXiP8"
                     title="स्नेहसंमेलन व्हिडिओ ३"
-                    frameBorder="0"
+                    style={{ border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="w-full h-full"
@@ -260,7 +339,7 @@ const Gallery = () => {
                     height="100%"
                     src="https://www.youtube.com/embed/qDFdzBoN3nQ"
                     title="मुंबई निमंत्रण व्हिडिओ"
-                    frameBorder="0"
+                    style={{ border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="w-full h-full"
@@ -326,6 +405,89 @@ const Gallery = () => {
           </div>
         </div>
       </section>
+
+      {/* Photo Viewer Modal */}
+      {isModalOpen && selectedImageIndex !== null && (
+        <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+          {/* Close Button */}
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+            title="बंद करा (Esc)"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Navigation Buttons */}
+          {selectedImageIndex > 0 && (
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              title="मागील फोटो (←)"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
+
+          {selectedImageIndex < galleryItems.length - 1 && (
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              title="पुढील फोटो (→)"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          )}
+
+          {/* Action Buttons */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-4">
+            <button
+              onClick={downloadImage}
+              className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              title="डाउनलोड करा"
+            >
+              <Download className="w-5 h-5" />
+            </button>
+
+            {'share' in navigator && (
+              <button
+                onClick={shareImage}
+                className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                title="शेअर करा"
+              >
+                <Share2 className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Image Container */}
+          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <img
+              src={galleryItems[selectedImageIndex].image}
+              alt={galleryItems[selectedImageIndex].title}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+
+          {/* Image Info */}
+          <div className="absolute bottom-4 left-4 z-10 max-w-md">
+            <div className="p-4 rounded-xl bg-black/50 backdrop-blur-sm text-white">
+              <h3 className="font-semibold text-lg mb-1">
+                {galleryItems[selectedImageIndex].title}
+              </h3>
+              <p className="text-white/70 text-sm">
+                {galleryItems[selectedImageIndex].year} • {selectedImageIndex + 1} / {galleryItems.length}
+              </p>
+            </div>
+          </div>
+
+          {/* Click outside to close */}
+          <div
+            className="absolute inset-0 -z-10"
+            onClick={closeModal}
+          />
+        </div>
+      )}
     </Layout>
   );
 };

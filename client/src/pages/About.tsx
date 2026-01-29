@@ -36,7 +36,7 @@ const About = () => {
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
                 बुलढाणा जिल्हा बौद्ध रहिवासी<br />
-                <span className="text-accent">समाज मंडळ मुंबई</span>
+                <span className="text-accent mt-8">समाज मंडळ मुंबई</span>
               </h1>
               <p className="max-w-3xl text-primary-foreground/80 text-lg">
                 गेल्या दहा वर्षांपासून मुंबईतील बुलढाणा जिल्हावासियांच्या सेवेत कार्यरत - 

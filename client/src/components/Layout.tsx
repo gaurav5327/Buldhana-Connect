@@ -68,9 +68,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 alt="बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई"
                 className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl object-cover"
               />
-              <div className="hidden sm:block">
-                <p className="font-bold text-foreground text-sm lg:text-base leading-tight">बुलढाणा जिल्हा</p>
-                <p className="text-xs lg:text-sm text-muted-foreground">बौद्ध रहिवासी समाज मंडळ</p>
+              <div className="hidden sm:block max-w-[180px]">
+                <p className="font-bold text-foreground text-sm lg:text-base leading-tight mb-1">बुलढाणा जिल्हा</p>
+                <p className="text-xs lg:text-sm text-muted-foreground leading-tight">बौद्ध रहिवासी समाज मंडळ</p>
               </div>
             </Link>
 

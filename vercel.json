@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "client/src/**/*.{js,ts,jsx,tsx}": {
+      "runtime": "@vercel/static-build"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
@@ -7,5 +12,6 @@
   ],
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/dist",
-  "installCommand": "cd client && npm install"
+  "installCommand": "cd client && npm install",
+  "framework": "vite"
 }

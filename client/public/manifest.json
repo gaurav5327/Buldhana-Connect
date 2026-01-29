@@ -1,0 +1,30 @@
+{
+  "name": "बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई",
+  "short_name": "बुलढाणा मंडळ",
+  "description": "बुलढाणा जिल्ह्यातील धम्म बांधवांना मुंबईत शैक्षणिक, सामाजिक आणि सांस्कृतिक मदत करणारी संस्था",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1e40af",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "categories": ["social", "community", "education"],
+  "lang": "mr",
+  "dir": "ltr"
+}

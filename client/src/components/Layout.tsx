@@ -62,15 +62,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 min-w-0">
               <img
                 src={mandalLogo}
                 alt="बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई"
-                className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl object-cover"
+                className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl object-cover flex-shrink-0"
               />
-              <div className="hidden sm:block max-w-[180px]">
-                <p className="font-bold text-foreground text-sm lg:text-base leading-tight mb-1">बुलढाणा जिल्हा</p>
-                <p className="text-xs lg:text-sm text-muted-foreground leading-tight">बौद्ध रहिवासी समाज मंडळ</p>
+              <div className="hidden sm:block max-w-[200px] lg:max-w-[220px] overflow-hidden">
+                <p className="font-bold text-foreground text-sm lg:text-base leading-tight mb-1 truncate">बुलढाणा जिल्हा</p>
+                <p className="text-xs lg:text-sm text-muted-foreground leading-tight truncate">बौद्ध रहिवासी समाज मंडळ</p>
               </div>
             </Link>
 

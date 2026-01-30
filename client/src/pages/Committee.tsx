@@ -7,6 +7,7 @@ import dayanandIngleImg from "@/assets/people/Dayanand_Ingle.jpg";
 import rajendraJadhaoImg from "@/assets/people/rajendra_jadhao.jpg";
 import vijayKharatImg from "@/assets/people/vijay_kharat.jpg";
 import bhaskarPawarImg from "@/assets/people/Bhaskar Pawar.jpg";
+import seemaJadhavImg from "@/assets/people/Seema_Jadhav.jpeg";
 import mandalLogo from "@/assets/mandal-logo.jpeg";
 
 interface MemberDetails {
@@ -179,7 +180,7 @@ const Committee = () => {
       designation: "उपाध्यक्षा",
       phone: "9820220992",
       featured: true,
-      image: mandalLogo, // Will be updated with actual photo
+      image: seemaJadhavImg,
       details: {
         fullName: "Ayu. Seema Sanjay Jadhav",
         education: "M.A. in Arts (Sociology)",

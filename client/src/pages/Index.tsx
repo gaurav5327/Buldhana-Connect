@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Users, Heart, Building2, GraduationCap, Briefcase, Calendar, ArrowRight, HandHeart, Award, MapPin, Phone } from "lucide-react";
+import { Users, Heart, Building2, GraduationCap, Briefcase, Calendar, ArrowRight, HandHeart, Award, MapPin, Phone, X, Image } from "lucide-react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import mandalLogo from "@/assets/mandal-logo.jpeg";
 import babasahebImg from "@/assets/babasaheb.jpeg";
@@ -7,6 +8,34 @@ import bhavanImg from "@/assets/buldhana-bhavan.jpeg";
 import varshikSahsamelanImg from "@/assets/varshik_sahsamelan.jpg";
 
 const Index = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openImageModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  // Keyboard event handling
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isModalOpen) return;
+
+      if (e.key === 'Escape') {
+        closeImageModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen]);
   const highlights = [
     { icon: Calendar, value: "१०+", label: "वर्षांची सेवा", color: "bg-primary/10 text-primary" },
     { icon: Users, value: "७०००+", label: "कुटुंबे जोडलेली", color: "bg-accent/20 text-accent" },
@@ -180,12 +209,17 @@ const Index = () => {
                       }`}
                   >
                     {item.image && (
-                      <div className="aspect-[16/9] overflow-hidden">
+                      <div className="relative aspect-[2/1] overflow-hidden group cursor-pointer" onClick={() => openImageModal(item.image)}>
                         <img
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover transition-transform hover:scale-105"
                         />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <Image className="w-5 h-5 text-white" />
+                          </div>
+                        </div>
                       </div>
                     )}
                     <div className="p-5">
@@ -288,6 +322,47 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Viewer Modal */}
+      {isModalOpen && selectedImage && (
+        <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+          {/* Close Button */}
+          <button
+            onClick={closeImageModal}
+            className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+            title="बंद करा (Esc)"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Image Container */}
+          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <img
+              src={selectedImage}
+              alt="वार्षिक स्नेहसंमेलन २०२६"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+
+          {/* Image Info */}
+          <div className="absolute bottom-4 left-4 z-10 max-w-md">
+            <div className="p-4 rounded-xl bg-black/50 backdrop-blur-sm text-white">
+              <h3 className="font-semibold text-lg mb-1">
+                वार्षिक स्नेहसंमेलन २०२६
+              </h3>
+              <p className="text-white/70 text-sm">
+                १ फेब्रुवारी २०२६ • डॉ बाबासाहेब आंबेडकर भवन, दादर
+              </p>
+            </div>
+          </div>
+
+          {/* Click outside to close */}
+          <div
+            className="absolute inset-0 -z-10"
+            onClick={closeImageModal}
+          />
+        </div>
+      )}
     </Layout>
   );
 };

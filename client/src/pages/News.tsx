@@ -1,4 +1,5 @@
-import { Newspaper, ExternalLink, Calendar, Image } from "lucide-react";
+import { Newspaper, ExternalLink, Calendar, Image, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 
 // Import newspaper cuttings
@@ -6,6 +7,55 @@ import newspaperCutting1 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-0
 import newspaperCutting2 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-01-29 at 1.53.42 PM.jpeg";
 
 const News = () => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const newspaperImages = [
+    { src: newspaperCutting1, title: "वृत्तपत्र कव्हरेज १", description: "मंडळाच्या कार्यक्रमाचे वृत्तपत्र कव्हरेज" },
+    { src: newspaperCutting2, title: "वृत्तपत्र कव्हरेज २", description: "स्नेहसंमेलन कार्यक्रमाची बातमी" }
+  ];
+
+  const openModal = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setSelectedImageIndex(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const goToPrevious = () => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedImageIndex !== null && selectedImageIndex < newspaperImages.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
+  };
+
+  // Keyboard event handling
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isModalOpen) return;
+
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, selectedImageIndex]);
   const newsItems = [
     {
       title: "बुलढाणा जिल्हा बौद्ध रहिवाशी समाज मंडळ मुंबई चे वार्षिक स्नेहसंमेलन",
@@ -86,31 +136,31 @@ const News = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted cursor-pointer hover-lift">
-                <img
-                  src={newspaperCutting1}
-                  alt="वृत्तपत्र कटिंग १"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform">
-                  <p className="text-white font-semibold">वृत्तपत्र कव्हरेज १</p>
-                  <p className="text-white/80 text-sm">क्लिक करून मोठे करा</p>
-                </div>
-              </div>
+              {newspaperImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted cursor-pointer hover-lift"
+                  onClick={() => openModal(index)}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform">
+                    <p className="text-white font-semibold">{image.title}</p>
+                    <p className="text-white/80 text-sm">क्लिक करून मोठे करा</p>
+                  </div>
 
-              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted cursor-pointer hover-lift">
-                <img
-                  src={newspaperCutting2}
-                  alt="वृत्तपत्र कटिंग २"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform">
-                  <p className="text-white font-semibold">वृत्तपत्र कव्हरेज २</p>
-                  <p className="text-white/80 text-sm">क्लिक करून मोठे करा</p>
+                  {/* Click Indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <Image className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -120,6 +170,68 @@ const News = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Viewer Modal */}
+      {isModalOpen && selectedImageIndex !== null && (
+        <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+          {/* Close Button */}
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+            title="बंद करा (Esc)"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Navigation Buttons */}
+          {selectedImageIndex > 0 && (
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              title="मागील फोटो (←)"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
+
+          {selectedImageIndex < newspaperImages.length - 1 && (
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              title="पुढील फोटो (→)"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          )}
+
+          {/* Image Container */}
+          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <img
+              src={newspaperImages[selectedImageIndex].src}
+              alt={newspaperImages[selectedImageIndex].title}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+
+          {/* Image Info */}
+          <div className="absolute bottom-4 left-4 z-10 max-w-md">
+            <div className="p-4 rounded-xl bg-black/50 backdrop-blur-sm text-white">
+              <h3 className="font-semibold text-lg mb-1">
+                {newspaperImages[selectedImageIndex].title}
+              </h3>
+              <p className="text-white/70 text-sm">
+                {newspaperImages[selectedImageIndex].description} • {selectedImageIndex + 1} / {newspaperImages.length}
+              </p>
+            </div>
+          </div>
+
+          {/* Click outside to close */}
+          <div
+            className="absolute inset-0 -z-10"
+            onClick={closeModal}
+          />
+        </div>
+      )}
     </Layout>
   );
 };

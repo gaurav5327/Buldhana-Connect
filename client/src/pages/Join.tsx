@@ -17,7 +17,9 @@ const Join = () => {
     taluka: "",
     village: "",
     profession: "",
-    wantsToVolunteer: ""
+    wantsToVolunteer: "",
+    paymentStatus: "",
+    transactionId: ""
   });
 
   const talukas = [
@@ -63,6 +65,10 @@ const Join = () => {
 इतर माहिती:
 - व्यवसाय: ${formData.profession || 'नाही'}
 - स्वयंसेवक बनायचे: ${formData.wantsToVolunteer === 'yes' ? 'होय' : formData.wantsToVolunteer === 'no' ? 'नाही' : 'निवडले नाही'}
+
+पेमेंट माहिती:
+- सभासद शुल्क स्थिती: ${formData.paymentStatus === 'paid' ? 'भरले आहे' : formData.paymentStatus === 'pending' ? 'नंतर भरणार' : 'निवडले नाही'}
+- Transaction ID: ${formData.transactionId || 'नाही'}
 
 कृपया या व्यक्तीला मंडळाच्या WhatsApp ग्रुपमध्ये जोडा.
 
@@ -326,6 +332,51 @@ const Join = () => {
                 </div>
               </div>
 
+              {/* Payment Confirmation */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  सभासद शुल्क (₹१०००) भरले आहे का? <span className="text-destructive">*</span>
+                </label>
+                <div className="space-y-3">
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="paymentStatus"
+                        value="paid"
+                        onChange={handleChange}
+                        className="w-4 h-4 text-primary"
+                        required
+                      />
+                      <span className="text-foreground">होय, भरले आहे</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="paymentStatus"
+                        value="pending"
+                        onChange={handleChange}
+                        className="w-4 h-4 text-primary"
+                      />
+                      <span className="text-foreground">नंतर भरेन</span>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Transaction ID / Reference Number (पेमेंट केले असल्यास)
+                    </label>
+                    <input
+                      type="text"
+                      name="transactionId"
+                      onChange={handleChange}
+                      placeholder="Transaction ID किंवा Reference Number"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                    />
+                  </div>
+                </div>
+              </div>
+
               {/* Submit */}
               <button
                 type="submit"
@@ -357,8 +408,57 @@ const Join = () => {
               </p>
             </div>
 
+            {/* Membership Fee & Payment Details */}
+            <div className="mt-6 p-6 rounded-xl bg-primary/5 border border-primary/20">
+              <h3 className="text-lg font-semibold text-primary mb-4">सभासद शुल्क व पेमेंट माहिती</h3>
+
+              <div className="space-y-4">
+                <div className="p-4 rounded-lg bg-accent/10 border border-accent/20">
+                  <p className="text-sm font-medium text-accent mb-2">
+                    💰 सभासद शुल्क: ₹१००० (एकवेळ)
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    सभासद होण्यासाठी ₹१००० शुल्क भरावे लागते
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Bank Details */}
+                  <div className="p-4 rounded-lg bg-background border border-border">
+                    <h4 className="font-semibold text-foreground mb-3">🏦 बँक तपशील</h4>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>बँक:</strong> State Bank of India (SBI)</p>
+                      <p><strong>खाते नाव:</strong> बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ</p>
+                      <p><strong>खाते क्रमांक:</strong> 40472267240</p>
+                      <p><strong>IFSC कोड:</strong> SBIN0070174</p>
+                      <p><strong>शाखा:</strong> Kharghar, Navi Mumbai</p>
+                    </div>
+                  </div>
+
+                  {/* UPI Details */}
+                  <div className="p-4 rounded-lg bg-background border border-border">
+                    <h4 className="font-semibold text-foreground mb-3">📱 UPI पेमेंट</h4>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>UPI ID:</strong> BULDHANAZILLA6240@SBI</p>
+                      <p><strong>फोन पे / गूगल पे:</strong> 9702777927</p>
+                      <div className="mt-3 p-2 bg-muted rounded text-center">
+                        <p className="text-xs text-muted-foreground">QR कोड स्कॅन करा</p>
+                        <p className="text-xs text-primary">किंवा UPI ID वापरा</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-orange-50 border border-orange-200">
+                  <p className="text-sm text-orange-800">
+                    <strong>महत्वाचे:</strong> पेमेंट केल्यानंतर स्क्रीनशॉट घेऊन फॉर्म भरताना त्याचा उल्लेख करा.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <p className="mt-4 text-center text-sm text-muted-foreground">
-              सध्या सभासद शुल्क नाही. मंडळाचे सभासद होणे पूर्णपणे विनामूल्य आहे.
+              सभासद शुल्क भरल्यानंतर तुम्हाला मंडळाच्या सर्व कार्यक्रमांमध्ये सहभागी होण्याचा अधिकार मिळेल.
             </p>
           </div>
         </div>

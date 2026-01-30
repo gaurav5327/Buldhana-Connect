@@ -68,16 +68,22 @@ const Committee = () => {
       }
     },
     {
-      name: "आयु. अरुण अंभोरे",
+      name: "आयु. विजय खरात",
       designation: "सचिव",
       role: "Secretary",
-      phone: "9224633354",
+      phone: "8169963285",
       featured: true,
-      image: mandalLogo,
+      image: vijayKharatImg,
       details: {
-        fullName: "Arun Ambhore",
+        fullName: "Vijay Kharat",
         designation: "सचिव",
-        phone: "9224633354"
+        positions: [
+          "Secretary Prabodhankar Thakre Vidyalay saramba Deulgaw Raja Buldhana",
+          "President The peoples Nagri sahkari Pata Sanstha Khanda colony Panvel",
+          "Secretary Indian social and cultural education society, khanda colony Panvel"
+        ],
+        native: "At, soyandeo Taluka sindkhed Raja Buldhana",
+        phone: "8169963285"
       }
     },
     {
@@ -98,6 +104,17 @@ const Committee = () => {
   ];
 
   const workingCommittee: Member[] = [
+    {
+      name: "आयु. अरुण अंभोरे",
+      designation: "सदस्य",
+      phone: "9224633354",
+      image: mandalLogo,
+      details: {
+        fullName: "Arun Ambhore",
+        designation: "सदस्य",
+        phone: "9224633354"
+      }
+    },
     {
       name: "आयु. वामन मोरे",
       designation: "सहसचिव",
@@ -158,30 +175,27 @@ const Committee = () => {
       }
     },
     {
-      name: "आयु. सीमा जाधव",
-      designation: "सदस्या",
+      name: "आयु. सीमा संजय जाधव",
+      designation: "उपाध्यक्षा",
       phone: "9820220992",
-      image: mandalLogo,
+      featured: true,
+      image: mandalLogo, // Will be updated with actual photo
       details: {
-        fullName: "Seema Jadhav",
-        designation: "सदस्या",
-        phone: "9820220992"
-      }
-    },
-    {
-      name: "आयु. विजय खरात",
-      designation: "सदस्य",
-      phone: "8169963285",
-      image: vijayKharatImg,
-      details: {
-        fullName: "Vijay Kharat",
+        fullName: "Ayu. Seema Sanjay Jadhav",
+        education: "M.A. in Arts (Sociology)",
+        native: "At Post Padli, District: Buldhana",
+        mumbaiAddress: "Kharghar, Navi Mumbai",
+        position: "Senior Vice President, Shapoorji Pallonji Group (UAE)",
+        otherRole: "Voice President in VBA Kharghar, Buddhist Unity Representative Navi Mumbai",
         positions: [
-          "Secretary Prabodhankar Thakre Vidyalay saramba Deulgaw Raja Buldhana",
-          "President The peoples Nagri sahkari Pata Sanstha Khanda colony Panvel",
-          "Secretary Indian social and cultural education society, khanda colony Panvel"
+          "Tathagat Mahavihar Social Organization, Kharghar, Navi Mumbai",
+          "Voice President in VBA Kharghar",
+          "Buddhist Unity Representative, Navi Mumbai",
+          "Member, Buldhana Bhavan Construction Organization, Mumbai",
+          "Prabuddha Mahila Sangh, Kharghar, Navi Mumbai",
+          "Actively involved in Dhamma propagation and social awareness initiatives"
         ],
-        native: "At, soyandeo Taluka sindkhed Raja Buldhana",
-        phone: "8169963285"
+        phone: "9820220992"
       }
     },
     {

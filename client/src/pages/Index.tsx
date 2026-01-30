@@ -209,7 +209,14 @@ const Index = () => {
                       }`}
                   >
                     {item.image && (
-                      <div className="relative aspect-[2/1] overflow-hidden group cursor-pointer" onClick={() => openImageModal(item.image)}>
+                      <div
+                        className="relative aspect-[2/1] overflow-hidden group cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          openImageModal(item.image);
+                        }}
+                      >
                         <img
                           src={item.image}
                           alt={item.title}

@@ -69,22 +69,16 @@ const Committee = () => {
       }
     },
     {
-      name: "आयु. विजय खरात",
+      name: "आयु. अरुण अंभोरे",
       designation: "सचिव",
       role: "Secretary",
-      phone: "8169963285",
+      phone: "9224633354",
       featured: true,
-      image: vijayKharatImg,
+      image: mandalLogo,
       details: {
-        fullName: "Vijay Kharat",
+        fullName: "Arun Ambhore",
         designation: "सचिव",
-        positions: [
-          "Secretary Prabodhankar Thakre Vidyalay saramba Deulgaw Raja Buldhana",
-          "President The peoples Nagri sahkari Pata Sanstha Khanda colony Panvel",
-          "Secretary Indian social and cultural education society, khanda colony Panvel"
-        ],
-        native: "At, soyandeo Taluka sindkhed Raja Buldhana",
-        phone: "8169963285"
+        phone: "9224633354"
       }
     },
     {
@@ -105,17 +99,6 @@ const Committee = () => {
   ];
 
   const workingCommittee: Member[] = [
-    {
-      name: "आयु. अरुण अंभोरे",
-      designation: "सदस्य",
-      phone: "9224633354",
-      image: mandalLogo,
-      details: {
-        fullName: "Arun Ambhore",
-        designation: "सदस्य",
-        phone: "9224633354"
-      }
-    },
     {
       name: "आयु. वामन मोरे",
       designation: "सहसचिव",
@@ -176,13 +159,13 @@ const Committee = () => {
       }
     },
     {
-      name: "आयु. सीमा संजय जाधव",
-      designation: "उपाध्यक्षा",
+      name: "आयु. सीमा जाधव",
+      designation: "सदस्या",
       phone: "9820220992",
       featured: true,
       image: seemaJadhavImg,
       details: {
-        fullName: "Ayu. Seema Sanjay Jadhav",
+        fullName: "Ayu. Seema Jadhav",
         education: "M.A. in Arts (Sociology)",
         native: "At Post Padli, District: Buldhana",
         mumbaiAddress: "Kharghar, Navi Mumbai",
@@ -197,6 +180,23 @@ const Committee = () => {
           "Actively involved in Dhamma propagation and social awareness initiatives"
         ],
         phone: "9820220992"
+      }
+    },
+    {
+      name: "आयु. विजय खरात",
+      designation: "सदस्य",
+      phone: "8169963285",
+      image: vijayKharatImg,
+      details: {
+        fullName: "Vijay Kharat",
+        designation: "सदस्य",
+        positions: [
+          "Secretary Prabodhankar Thakre Vidyalay saramba Deulgaw Raja Buldhana",
+          "President The peoples Nagri sahkari Pata Sanstha Khanda colony Panvel",
+          "Secretary Indian social and cultural education society, khanda colony Panvel"
+        ],
+        native: "At, soyandeo Taluka sindkhed Raja Buldhana",
+        phone: "8169963285"
       }
     },
     {

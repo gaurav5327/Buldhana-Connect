@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 
+// Import event images
+import varshikSahsamelan2023Img from "@/assets/varshik_sahsamelan2023.jpg";
+
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -30,6 +33,34 @@ const Events = () => {
         "मा. सिद्धार्थ खरात (सहसचिव उच्च व तंत्र शिक्षण मंत्रालय)"
       ],
       highlight: true
+    },
+    {
+      year: "2023",
+      title: "गेट-टुगेदर कार्यक्रम",
+      date: "२९ जानेवारी २०२३",
+      location: "मुंबई",
+      participants: "२००+",
+      description: "बुलढाणा जिल्हा रहिवासी बौद्ध समाज मंडळ द्वारा आयोजित गेट-टुगेदर चा कार्यक्रम मोठ्या उत्साहात व जल्लोषात पार पडला.",
+      guests: [
+        "आयुष्यमान एच बी तायडे साहेब",
+        "प्रिन्सिपल तायडे सर",
+        "आत्माराम पाखरे सर",
+        "एकनाथ शिन्दे",
+        "उत्तमराव काकडे",
+        "सुप्रसिद्ध गायक नागसेन सावदेकर",
+        "व्ही जी जाधव साहेब",
+        "बोदवडे साहेब",
+        "संजय जाधव सर",
+        "भगवानराव गवई साहेब",
+        "माजी न्यायाधीश अवसरमोल साहेब",
+        "न्यायाधीश मोरे साहेब",
+        "न्यायाधीश सुद्धोधन मोरे साहेब (नागपूर)",
+        "आयुष्यमान सिद्धार्थ खरात साहेब",
+        "आयुष्यमती सुवर्णा खरात मॅडम"
+      ],
+      image: varshikSahsamelan2023Img,
+      highlight: true,
+      details: "कार्यक्रमाच्या यशस्वीतेसाठी कार्यकारी मंडळातील सर्व सभासदांचे मोलाचे सहकार्य तर आहेत परंतु आजच्या कार्यक्रमांमध्ये हेही दिसून आले की आपल्या जिल्ह्याचे जे वरिष्ठ मार्गदर्शक आहेत त्यांच्या यशस्वी पाठिंब्यामुळेच हा कार्यक्रम पूर्णपणे खऱ्या अर्थाने यशस्वी झाला. विशेष आभार मानावे ते गायक मंडळीचे कारण त्यांच्यामुळे कार्यक्रमा मध्ये मरगळ आली नाही तर पूर्ण दिवसभर कार्य क्रम असूनही उत्साहाचे वातावरण होते."
     },
     {
       year: "2024",
@@ -253,7 +284,27 @@ const Events = () => {
                   </span>
                 </div>
 
+                {/* Event Image */}
+                {event.image && (
+                  <div className="mb-4">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full max-w-md mx-auto rounded-xl shadow-lg"
+                    />
+                  </div>
+                )}
+
                 <p className="text-muted-foreground mb-4">{event.description}</p>
+
+                {/* Additional Details */}
+                {event.details && (
+                  <div className="mb-4 p-4 rounded-xl bg-card border border-border">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {event.details}
+                    </p>
+                  </div>
+                )}
 
                 {event.guests.length > 0 && (
                   <div className="mt-6 pt-6 border-t border-border">

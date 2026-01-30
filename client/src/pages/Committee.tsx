@@ -47,7 +47,7 @@ const Committee = () => {
       image: dayanandIngleImg,
       details: {
         fullName: "Dr. Dayanand Ingle",
-        education: "MTech, Ph.D Computer Engineering, LLB, LLM (Indian Constitution)",
+        education: "BE,MTech, Ph.D Computer Engineering, LLB, LLM (Indian Constitution)",
         position: "Professor and Head Dept of Computer Engg. Bharati Vidyapeeth College of Engineering Navi Mumbai",
         address: "Navi Mumbai pin 410210 India",
         experience: "Ex. Member, Board of Studies in Computer Engineering under Science and Technology University of Mumbai",

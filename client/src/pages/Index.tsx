@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import mandalLogo from "@/assets/mandal-logo.jpeg";
 import babasahebImg from "@/assets/babasaheb.jpeg";
 import bhavanImg from "@/assets/buldhana-bhavan.jpeg";
+import varshikSahsamelanImg from "@/assets/varshik_sahsamelan.jpg";
 
 const Index = () => {
   const highlights = [
@@ -26,7 +27,8 @@ const Index = () => {
       title: "वार्षिक स्नेहसंमेलन २०२६",
       description: "डॉ बाबासाहेब आंबेडकर भवन, दादर - सकाळी ९ ते दुपारी ४",
       featured: true,
-      urgent: true
+      urgent: true,
+      image: varshikSahsamelanImg
     },
     {
       date: "२८ नोव्हेंबर २०२५",
@@ -172,33 +174,44 @@ const Index = () => {
                   <Link
                     key={index}
                     to="/events"
-                    className={`block p-5 rounded-xl border hover-lift cursor-pointer transition-all ${item.featured
+                    className={`block rounded-xl border hover-lift cursor-pointer transition-all overflow-hidden ${item.featured
                       ? 'bg-gradient-to-r from-accent/10 to-accent/5 border-accent/30 hover:from-accent/15 hover:to-accent/10'
                       : 'bg-background border-border hover:bg-muted/50'
                       }`}
                   >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className={`text-xs font-medium ${item.featured ? 'text-accent' : 'text-accent'
-                        }`}>
-                        {item.date}
-                      </span>
-                      {item.urgent && (
-                        <span className="px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-xs font-medium">
-                          आगामी
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                    {item.featured && (
-                      <div className="mt-3 pt-3 border-t border-accent/20">
-                        <p className="text-xs text-accent font-medium">
-                          सहयोग राशी: ₹१००० प्रति कुटुंब • प्रमुख पाहुणे: डॉ भीमराव आंबेडकर, आनंदराज आंबेडकर साहेब
-                        </p>
+                    {item.image && (
+                      <div className="aspect-[16/9] overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform hover:scale-105"
+                        />
                       </div>
                     )}
-                    <div className="mt-3 flex items-center text-xs text-primary font-medium">
-                      अधिक माहिती <ArrowRight className="w-3 h-3 ml-1" />
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-xs font-medium ${item.featured ? 'text-accent' : 'text-accent'
+                          }`}>
+                          {item.date}
+                        </span>
+                        {item.urgent && (
+                          <span className="px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-xs font-medium">
+                            आगामी
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                      {item.featured && (
+                        <div className="mt-3 pt-3 border-t border-accent/20">
+                          <p className="text-xs text-accent font-medium">
+                            सहयोग राशी: ₹१००० प्रति कुटुंब • प्रमुख पाहुणे: डॉ भीमराव आंबेडकर, आनंदराज आंबेडकर साहेब
+                          </p>
+                        </div>
+                      )}
+                      <div className="mt-3 flex items-center text-xs text-primary font-medium">
+                        अधिक माहिती <ArrowRight className="w-3 h-3 ml-1" />
+                      </div>
                     </div>
                   </Link>
                 ))}

@@ -1,5 +1,9 @@
-import { Newspaper, ExternalLink, Calendar } from "lucide-react";
+import { Newspaper, ExternalLink, Calendar, Image } from "lucide-react";
 import Layout from "@/components/Layout";
+
+// Import newspaper cuttings
+import newspaperCutting1 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-01-29 at 1.53.41 PM.jpeg";
+import newspaperCutting2 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-01-29 at 1.53.42 PM.jpeg";
 
 const News = () => {
   const newsItems = [
@@ -68,6 +72,46 @@ const News = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Newspaper Cuttings Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                वृत्तपत्र कटिंग्स
+              </h2>
+              <p className="text-muted-foreground">
+                आमच्या कार्यक्रमांचे वृत्तपत्रांमधील कव्हरेज
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted cursor-pointer hover-lift">
+                <img
+                  src={newspaperCutting1}
+                  alt="वृत्तपत्र कटिंग १"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform">
+                  <p className="text-white font-semibold">वृत्तपत्र कव्हरेज १</p>
+                  <p className="text-white/80 text-sm">क्लिक करून मोठे करा</p>
+                </div>
+              </div>
+
+              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-muted cursor-pointer hover-lift">
+                <img
+                  src={newspaperCutting2}
+                  alt="वृत्तपत्र कटिंग २"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-transform">
+                  <p className="text-white font-semibold">वृत्तपत्र कव्हरेज २</p>
+                  <p className="text-white/80 text-sm">क्लिक करून मोठे करा</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="max-w-xl mx-auto mt-12 text-center p-8 rounded-3xl bg-card border border-border">

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useI18n } from '@/lib/i18n';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { t, lang, setLang } = useI18n();
+
   const navLinks = [
-    { href: "#about", label: "आमच्याबद्दल" },
-    { href: "#events", label: "कार्यक्रम" },
-    { href: "#bhawan", label: "बुलढाणा भवन" },
-    { href: "#contact", label: "संपर्क" },
+    { href: "#about", label: t("आमच्याबद्दल", "About") },
+    { href: "#events", label: t("कार्यक्रम", "Events") },
+    { href: "#bhawan", label: t("बुलढाणा भवन", "Bhavan") },
+    { href: "#contact", label: t("संपर्क", "Contact") },
   ];
 
   return (
@@ -41,13 +44,31 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
             <a 
               href="#contact"
               className="px-5 py-2.5 rounded-lg gradient-gold text-accent-foreground font-semibold text-sm shadow-gold hover-lift"
             >
-              सभासद व्हा
+              {t('सभासद व्हा', 'Become Member')}
             </a>
+
+            {/* Language Switcher */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setLang('mr')}
+                className={`px-3 py-1 rounded ${lang==='mr' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground'}`}
+                aria-label="Select Marathi"
+              >
+                MR
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={`px-3 py-1 rounded ${lang==='en' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground'}`}
+                aria-label="Select English"
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -79,8 +100,13 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="mx-4 mt-2 px-5 py-3 rounded-lg gradient-gold text-accent-foreground font-semibold text-center shadow-gold"
               >
-                सभासद व्हा
+                {t('सभासद व्हा', 'Become Member')}
               </a>
+
+              <div className="mx-4 mt-3 flex gap-2">
+                <button onClick={() => { setLang('mr'); setIsMenuOpen(false); }} className={`px-3 py-2 rounded ${lang==='mr' ? 'bg-primary text-primary-foreground' : 'bg-muted/10'}`}>MR</button>
+                <button onClick={() => { setLang('en'); setIsMenuOpen(false); }} className={`px-3 py-2 rounded ${lang==='en' ? 'bg-primary text-primary-foreground' : 'bg-muted/10'}`}>EN</button>
+              </div>
             </nav>
           </div>
         )}

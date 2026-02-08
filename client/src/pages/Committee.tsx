@@ -1,6 +1,7 @@
 import { Phone, X, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import { useI18n } from "@/lib/i18n";
 
 // Import member images
 import dayanandIngleImg from "@/assets/people/Dayanand_Ingle.jpg";
@@ -26,7 +27,9 @@ interface MemberDetails {
 
 interface Member {
   name: string;
+  englishName: string;
   designation: string;
+  englishDesignation: string;
   role?: string;
   phone: string;
   featured?: boolean;
@@ -35,12 +38,15 @@ interface Member {
 }
 
 const Committee = () => {
+  const { t, lang } = useI18n();
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   const executiveMembers: Member[] = [
     {
       name: "डॉ. दयानंद इंगळे",
+      englishName: "Dr. Dayanand Ingle",
       designation: "अध्यक्ष",
+      englishDesignation: "President",
       role: "President",
       phone: "9702777927",
       featured: true,
@@ -57,7 +63,9 @@ const Committee = () => {
     },
     {
       name: "आयु. प्रल्हाद सोनूने",
+      englishName: "Off Pralhad Sonune",
       designation: "उपाध्यक्ष",
+      englishDesignation: "Vice President",
       role: "Vice President",
       phone: "9420645830",
       featured: true,
@@ -70,7 +78,9 @@ const Committee = () => {
     },
     {
       name: "आयु. अरुण अंभोरे",
+      englishName: "Off Arun Ambhore",
       designation: "सचिव",
+      englishDesignation: "Secretary",
       role: "Secretary",
       phone: "9224633354",
       featured: true,
@@ -83,7 +93,9 @@ const Committee = () => {
     },
     {
       name: "आयु. भास्कर पवार",
+      englishName: "Off Bhaskar Pawar",
       designation: "खजिनदार",
+      englishDesignation: "Treasurer",
       role: "Treasurer",
       phone: "9969131829",
       featured: true,
@@ -101,7 +113,9 @@ const Committee = () => {
   const workingCommittee: Member[] = [
     {
       name: "आयु. वामन मोरे",
+      englishName: "Off Vaman More",
       designation: "सहसचिव",
+      englishDesignation: "Co-Secretary",
       phone: "9082189458",
       image: mandalLogo,
       details: {
@@ -112,7 +126,9 @@ const Committee = () => {
     },
     {
       name: "आयु. दिलीप भालेराव",
+      englishName: "Off Dilip Bhalerao",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "9870225644",
       image: mandalLogo,
       details: {
@@ -123,7 +139,9 @@ const Committee = () => {
     },
     {
       name: "आयु. राजेंद्र जाधव",
+      englishName: "Off Rajendra Jadhao",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "8898566340",
       image: rajendraJadhaoImg,
       details: {
@@ -138,7 +156,9 @@ const Committee = () => {
     },
     {
       name: "आयु. रुस्तुम भालेराव",
+      englishName: "Off Rustum Bhalerao",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "9665622170",
       image: mandalLogo,
       details: {
@@ -149,7 +169,9 @@ const Committee = () => {
     },
     {
       name: "आयु. सुभाष गवई",
+      englishName: "Off Subhash Gavai",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "9867463572",
       image: mandalLogo,
       details: {
@@ -160,12 +182,14 @@ const Committee = () => {
     },
     {
       name: "आयु. सीमा जाधव",
+      englishName: "Off Seema Jadhav",
       designation: "सदस्या",
+      englishDesignation: "Member",
       phone: "9820220992",
       featured: true,
       image: seemaJadhavImg,
       details: {
-        fullName: "Ayu. Seema Jadhav",
+        fullName: "Off Seema Jadhav",
         education: "M.A. in Arts (Sociology)",
         native: "At Post Padli, District: Buldhana",
         mumbaiAddress: "Kharghar, Navi Mumbai",
@@ -184,7 +208,9 @@ const Committee = () => {
     },
     {
       name: "आयु. विजय खरात",
+      englishName: "Off Vijay Kharat",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "8169963285",
       image: vijayKharatImg,
       details: {
@@ -201,7 +227,9 @@ const Committee = () => {
     },
     {
       name: "आयु. रमेश अडेलकर",
+      englishName: "Off Ramesh Adelkar",
       designation: "सदस्य",
+      englishDesignation: "Member",
       phone: "9082975404",
       image: mandalLogo,
       details: {
@@ -212,7 +240,9 @@ const Committee = () => {
     },
     {
       name: "आयु. ललिता पंडागळे",
+      englishName: "Off Lalita Pandagle",
       designation: "सदस्या",
+      englishDesignation: "Member",
       phone: "9987239188",
       image: mandalLogo,
       details: {
@@ -237,13 +267,13 @@ const Committee = () => {
       <section className="py-20 gradient-hero">
         <div className="container mx-auto px-4 text-center">
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
-            कार्यकारिणी
+            {t("कार्यकारिणी", "Committee")}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            आमची <span className="text-accent">कार्यकारिणी</span>
+            {t("आमची", "Our")} <span className="text-accent">{t("कार्यकारिणी", "Committee")}</span>
           </h1>
           <p className="max-w-3xl mx-auto text-primary-foreground/80 text-lg">
-            मंडळाच्या कार्यकारिणी सदस्यांची माहिती - तुम्ही कधीही संपर्क साधू शकता
+            {t("मंडळाच्या कार्यकारिणी सदस्यांची माहिती - तुम्ही कधीही संपर्क साधू शकता", "Information about the committee members - you can contact them anytime")}
           </p>
         </div>
       </section>
@@ -253,10 +283,10 @@ const Committee = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              मुख्य पदाधिकारी
+              {t("मुख्य पदाधिकारी", "Executive offs")}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              कार्यकारी मंडळ
+              {t("कार्यकारी मंडळ", "Executive Committee")}
             </h2>
           </div>
 
@@ -276,10 +306,11 @@ const Committee = () => {
                   />
                 </div>
                 <span className="inline-block px-3 py-1 rounded-full gradient-gold text-accent-foreground text-xs font-semibold mb-3">
-                  {member.designation}
+                  {lang === 'en' ? member.englishDesignation : member.designation}
                 </span>
-                <h3 className="text-lg font-semibold text-foreground mb-1">{member.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{member.role}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-1">
+                  {lang === 'en' ? member.englishName : member.name}
+                </h3>
                 <a
                   href={`tel:${member.phone}`}
                   className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
@@ -299,10 +330,10 @@ const Committee = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent-foreground text-sm font-medium mb-4">
-              कार्यकारी सदस्य
+              {t("कार्यकारी सदस्य", "Working Members")}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              कार्य समिती सदस्य
+              {t("कार्य समिती सदस्य", "Committee Members")}
             </h2>
           </div>
 
@@ -321,8 +352,12 @@ const Committee = () => {
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground truncate">{member.name}</p>
-                  <p className="text-sm text-muted-foreground">{member.designation}</p>
+                  <p className="font-semibold text-foreground truncate">
+                    {lang === 'en' ? member.englishName : member.name}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {lang === 'en' ? member.englishDesignation : member.designation}
+                  </p>
                 </div>
                 <a
                   href={`tel:${member.phone}`}
@@ -344,7 +379,7 @@ const Committee = () => {
             <div className="p-6">
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">सदस्य माहिती</h2>
+                <h2 className="text-2xl font-bold text-foreground">{t("सदस्य माहिती", "Member Information")}</h2>
                 <button
                   onClick={closeMemberDetails}
                   className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -363,9 +398,11 @@ const Committee = () => {
                   />
                 </div>
                 <span className="inline-block px-4 py-2 rounded-full gradient-gold text-accent-foreground text-sm font-semibold mb-3">
-                  {selectedMember.designation}
+                  {lang === 'en' ? selectedMember.englishDesignation : selectedMember.designation}
                 </span>
-                <h3 className="text-2xl font-bold text-foreground mb-2">{selectedMember.name}</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  {lang === 'en' ? selectedMember.englishName : selectedMember.name}
+                </h3>
                 {selectedMember.details.fullName && (
                   <p className="text-lg text-muted-foreground mb-4">{selectedMember.details.fullName}</p>
                 )}
@@ -377,7 +414,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <GraduationCap className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">शिक्षण</p>
+                      <p className="font-semibold text-foreground">{t("शिक्षण", "Education")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.education}</p>
                     </div>
                   </div>
@@ -387,7 +424,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <Briefcase className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">पद</p>
+                      <p className="font-semibold text-foreground">{t("पद", "Position")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.position}</p>
                     </div>
                   </div>
@@ -397,7 +434,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <Briefcase className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">पदे</p>
+                      <p className="font-semibold text-foreground">{t("पदे", "Positions")}</p>
                       <ul className="text-muted-foreground space-y-1">
                         {selectedMember.details.positions.map((position, idx) => (
                           <li key={idx}>• {position}</li>
@@ -411,7 +448,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <Briefcase className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">अनुभव</p>
+                      <p className="font-semibold text-foreground">{t("अनुभव", "Experience")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.experience}</p>
                     </div>
                   </div>
@@ -421,7 +458,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <Briefcase className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">इतर भूमिका</p>
+                      <p className="font-semibold text-foreground">{t("इतर भूमिका", "Other Role")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.otherRole}</p>
                     </div>
                   </div>
@@ -431,7 +468,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">मूळ गाव</p>
+                      <p className="font-semibold text-foreground">{t("मूळ गाव", "Native Village")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.native}</p>
                     </div>
                   </div>
@@ -441,7 +478,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">पत्ता</p>
+                      <p className="font-semibold text-foreground">{t("पत्ता", "Address")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.address}</p>
                     </div>
                   </div>
@@ -451,7 +488,7 @@ const Committee = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-primary mt-1 shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">मुंबई पत्ता</p>
+                      <p className="font-semibold text-foreground">{t("मुंबई पत्ता", "Mumbai Address")}</p>
                       <p className="text-muted-foreground">{selectedMember.details.mumbaiAddress}</p>
                     </div>
                   </div>
@@ -460,7 +497,7 @@ const Committee = () => {
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
                   <div>
-                    <p className="font-semibold text-foreground">संपर्क</p>
+                    <p className="font-semibold text-foreground">{t("संपर्क", "Contact")}</p>
                     <a
                       href={`tel:${selectedMember.details.phone}`}
                       className="text-primary hover:underline"
@@ -477,7 +514,7 @@ const Committee = () => {
                   onClick={closeMemberDetails}
                   className="px-6 py-3 rounded-xl gradient-gold text-accent-foreground font-semibold shadow-gold hover-lift"
                 >
-                  बंद करा
+                  {t("बंद करा", "Close")}
                 </button>
               </div>
             </div>
@@ -490,14 +527,13 @@ const Committee = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center p-8 rounded-3xl gradient-hero">
             <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-              केव्हाही संपर्क करा!
+              {t("केव्हाही संपर्क करा!", "Contact Us Anytime!")}
             </h2>
             <p className="text-primary-foreground/80 mb-6">
-              तुम्ही वरील कोणत्याही सदस्यांना कधीही फोन करू शकता व आपले काम सांगू शकता.
-              आम्ही तुमच्या मदतीसाठी सदैव तत्पर आहोत.
+              {t("तुम्ही वरील कोणत्याही सदस्यांना कधीही फोन करू शकता व आपले काम सांगू शकता. आम्ही तुमच्या मदतीसाठी सदैव तत्पर आहोत.", "You can call any of the above members anytime and tell them your needs. We are always ready to help you.")}
             </p>
             <p className="text-accent font-semibold text-lg">
-              सविनय जयभीम 🙏
+              {t("सविनय जयभीम 🙏", "Jai Bhim 🙏")}
             </p>
           </div>
         </div>

@@ -2,30 +2,32 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, Mail, Heart } from "lucide-react";
 import mandalLogo from "@/assets/mandal-logo.jpeg";
+import { useI18n } from '@/lib/i18n';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const { t, lang, setLang } = useI18n();
 
   const navItems = [
-    { href: "/", label: "मुख्यपृष्ठ" },
-    { href: "/about", label: "आमच्याबद्दल" },
-    { href: "/objectives", label: "ध्येय व उपक्रम" },
-    { href: "/events", label: "कार्यक्रम" },
-    { href: "/gallery", label: "गॅलरी" },
-    { href: "/committee", label: "कार्यकारिणी" },
+    { href: "/", label: t("मुख्यपृष्ठ", "Home") },
+    { href: "/about", label: t("आमच्याबद्दल", "About") },
+    { href: "/objectives", label: t("ध्येय व उपक्रम", "Objectives") },
+    { href: "/events", label: t("कार्यक्रम", "Events") },
+    { href: "/gallery", label: t("गॅलरी", "Gallery") },
+    { href: "/committee", label: t("कार्यकारिणी", "Committee") },
     {
-      label: "सहभाग",
+      label: t("सहभाग", "Participation"),
       children: [
-        { href: "/get-help", label: "मदत हवी आहे?" },
-        { href: "/join", label: "सभासद बना" },
-        { href: "/donate", label: "देणगी द्या" },
+        { href: "/get-help", label: t("मदत हवी आहे?", "Get Help") },
+        { href: "/join", label: t("सभासद बना", "Join") },
+        { href: "/donate", label: t("देणगी द्या", "Donate") },
       ]
     },
-    { href: "/bhavan", label: "बुलढाणा भवन" },
-    { href: "/news", label: "बातम्या" },
-    { href: "/contact", label: "संपर्क" },
+    { href: "/bhavan", label: t("बुलढाणा भवन", "Bhavan") },
+    { href: "/news", label: t("बातम्या", "News") },
+    { href: "/contact", label: t("संपर्क", "Contact") },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -35,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2 text-sm hidden md:block sticky top-0 z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <p>धर्मदाय आयुक्त कार्यालय, ठाणे - नोंदणीकृत २०२२</p>
+          <p>{t('धर्मदाय आयुक्त कार्यालय, ठाणे - नोंदणीकृत २०२२','Registered (Thane) - 2022')}</p>
           <div className="flex items-center gap-6">
             <a
               href="tel:+919702777927"
@@ -69,8 +71,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl object-cover flex-shrink-0"
               />
               <div className="hidden sm:block max-w-[200px] lg:max-w-[220px] overflow-hidden">
-                <p className="font-bold text-foreground text-sm lg:text-base leading-tight mb-1 truncate">बुलढाणा जिल्हा</p>
-                <p className="text-xs lg:text-sm text-muted-foreground leading-tight truncate">बौद्ध रहिवासी समाज मंडळ</p>
+                <p className="font-bold text-foreground text-sm lg:text-base leading-tight mb-1 truncate">{t('बुलढाणा जिल्हा','Buldhana District')}</p>
+                <p className="text-xs lg:text-sm text-muted-foreground leading-tight truncate">{t('बौद्ध रहिवासी समाज मंडळ','Buddhist Residents Association')}</p>
               </div>
             </Link>
 
@@ -118,14 +120,32 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               ))}
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
+            {/* CTA Button & Language Switcher */}
+            <div className="hidden lg:flex items-center gap-4">
               <Link
                 to="/donate"
                 className="px-5 py-2.5 rounded-lg gradient-gold text-accent-foreground font-semibold text-sm shadow-gold hover-lift"
               >
-                देणगी द्या
+                {t('देणगी द्या','Donate')}
               </Link>
+
+              {/* Language Switcher */}
+              <div className="flex items-center gap-2 border-l border-border pl-4">
+                <button
+                  onClick={() => setLang('mr')}
+                  className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${lang === 'mr' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground hover:bg-muted/20'}`}
+                  aria-label="Select Marathi"
+                >
+                  मराठी
+                </button>
+                <button
+                  onClick={() => setLang('en')}
+                  className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${lang === 'en' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground hover:bg-muted/20'}`}
+                  aria-label="Select English"
+                >
+                  English
+                </button>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -185,8 +205,24 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   onClick={() => setIsMenuOpen(false)}
                   className="mx-4 mt-2 px-5 py-3 rounded-lg gradient-gold text-accent-foreground font-semibold text-center shadow-gold"
                 >
-                  देणगी द्या
+                  {t('देणगी द्या','Donate')}
                 </Link>
+
+                {/* Language Switcher Mobile */}
+                <div className="mx-4 mt-4 flex gap-2 border-t border-border pt-4">
+                  <button
+                    onClick={() => { setLang('mr'); setIsMenuOpen(false); }}
+                    className={`flex-1 px-3 py-2 rounded text-sm font-semibold transition-colors ${lang === 'mr' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground'}`}
+                  >
+                    मराठी
+                  </button>
+                  <button
+                    onClick={() => { setLang('en'); setIsMenuOpen(false); }}
+                    className={`flex-1 px-3 py-2 rounded text-sm font-semibold transition-colors ${lang === 'en' ? 'bg-primary text-primary-foreground' : 'bg-muted/10 text-foreground'}`}
+                  >
+                    English
+                  </button>
+                </div>
               </nav>
             </div>
           )}
@@ -211,24 +247,24 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   className="w-12 h-12 rounded-xl object-cover border-2 border-accent/30"
                 />
                 <div>
-                  <p className="font-bold text-primary-foreground">बुलढाणा जिल्हा</p>
-                  <p className="text-primary-foreground/80 text-sm">बौद्ध रहिवासी समाज मंडळ</p>
+                  <p className="font-bold text-primary-foreground">{t('बुलढाणा जिल्हा','Buldhana District')}</p>
+                  <p className="text-primary-foreground/80 text-sm">{t('बौद्ध रहिवासी समाज मंडळ','Buddhist Residents Association')}</p>
                 </div>
               </div>
               <p className="text-primary-foreground/70 text-sm leading-relaxed">
-                मुंबईत राहणाऱ्या बुलढाणा जिल्ह्यातील धम्म बांधवांसाठी शैक्षणिक, सामाजिक आणि सांस्कृतिक मदत.
+                {t('मुंबईत राहणाऱ्या बुलढाणा जिल्ह्यातील धम्म बांधवांसाठी शैक्षणिक, सामाजिक आणि सांस्कृतिक मदत.','Educational, social and cultural support for Buldhana residents in Mumbai.')}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-primary-foreground font-semibold mb-4">द्रुत दुवे</h3>
+              <h3 className="text-primary-foreground font-semibold mb-4">{t('द्रुत दुवे','Quick Links')}</h3>
               <div className="space-y-2">
                 {[
-                  { href: "/about", label: "आमच्याबद्दल" },
-                  { href: "/objectives", label: "ध्येय व उपक्रम" },
-                  { href: "/events", label: "कार्यक्रम" },
-                  { href: "/committee", label: "कार्यकारिणी" },
+                  { href: "/about", label: t('आमच्याबद्दल','About') },
+                  { href: "/objectives", label: t('ध्येय व उपक्रम','Objectives') },
+                  { href: "/events", label: t('कार्यक्रम','Events') },
+                  { href: "/committee", label: t('कार्यकारिणी','Committee') },
                 ].map(link => (
                   <Link key={link.href} to={link.href} className="block text-primary-foreground/70 hover:text-accent text-sm transition-colors">
                     {link.label}
@@ -239,13 +275,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Get Involved */}
             <div>
-              <h3 className="text-primary-foreground font-semibold mb-4">सहभागी व्हा</h3>
+              <h3 className="text-primary-foreground font-semibold mb-4">{t('सहभागी व्हा','Get Involved')}</h3>
               <div className="space-y-2">
                 {[
-                  { href: "/get-help", label: "मदत मिळवा" },
-                  { href: "/join", label: "सभासद बना" },
-                  { href: "/donate", label: "देणगी द्या" },
-                  { href: "/bhavan", label: "बुलढाणा भवन" },
+                  { href: "/get-help", label: t('मदत मिळवा','Get Help') },
+                  { href: "/join", label: t('सभासद बना','Join') },
+                  { href: "/donate", label: t('देणगी द्या','Donate') },
+                  { href: "/bhavan", label: t('बुलढाणा भवन','Bhavan') },
                 ].map(link => (
                   <Link key={link.href} to={link.href} className="block text-primary-foreground/70 hover:text-accent text-sm transition-colors">
                     {link.label}
@@ -256,7 +292,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Contact */}
             <div>
-              <h3 className="text-primary-foreground font-semibold mb-4">संपर्क</h3>
+              <h3 className="text-primary-foreground font-semibold mb-4">{t('संपर्क','Contact')}</h3>
               <div className="space-y-3 text-sm">
                 <a href="tel:+919702777927" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors">
                   <Phone className="w-4 h-4" />
@@ -265,7 +301,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <a
                   href="mailto:buldhanabauddhamandal@gmail.com?subject=संपर्क%20-%20बुलढाणा%20मंडळ"
                   className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors cursor-pointer"
-                  title="ईमेल पाठवा"
+                  title={t('ईमेल पाठवा','Send email')}
                 >
                   <Mail className="w-4 h-4" />
                   buldhanabauddhamandal@gmail.com
@@ -276,14 +312,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Bottom */}
           <div className="pt-8 border-t border-primary-foreground/20 text-center">
-            <p className="text-2xl font-semibold text-accent mb-4">सविनय जयभीम 🙏</p>
+            <p className="text-2xl font-semibold text-accent mb-4">{t('सविनय जयभीम 🙏','Savinay Jai Bhim 🙏')}</p>
             <p className="text-sm text-primary-foreground/60 mb-2">
-              धर्मदाय आयुक्त कार्यालय, ठाणे येथे नोंदणीकृत (२०२२)
+              {t('धर्मदाय आयुक्त कार्यालय, ठाणे येथे नोंदणीकृत (२०२२)','Registered (Thane) - 2022')}
             </p>
             <p className="text-sm text-primary-foreground/60 flex items-center justify-center gap-1">
-              © {new Date().getFullYear()} बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई.
+              © {new Date().getFullYear()} {t('बुलढाणा जिल्हा बौद्ध रहिवासी समाज मंडळ मुंबई','Buldhana District Buddhist Residents Association, Mumbai')}.
               <span className="flex items-center gap-1">
-                Made with <Heart className="w-4 h-4 text-accent fill-accent" /> for our community
+                {t('Made with','Made with')} <Heart className="w-4 h-4 text-accent fill-accent" /> {t('for our community','for our community')}
               </span>
             </p>
           </div>
@@ -294,3 +330,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Layout;
+           

@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import { Users, Heart, Building2, GraduationCap, Briefcase, Calendar, ArrowRight, HandHeart, Award, MapPin, Phone, X, Image } from "lucide-react";
+import { Users, Heart,GraduationCap, Briefcase, Calendar, ArrowRight, HandHeart, Award, MapPin, Phone, X, Image } from "lucide-react";
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
+import { useI18n } from '@/lib/i18n';
 import mandalLogo from "@/assets/mandal-logo.jpeg";
-import babasahebImg from "@/assets/babasaheb.jpeg";
+
 import bhavanImg from "@/assets/buldhana-bhavan.jpeg";
 import varshikSahsamelanImg from "@/assets/varshik_sahsamelan.jpg";
 
 const Index = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { t } = useI18n();
 
   const openImageModal = (imageSrc: string) => {
     setSelectedImage(imageSrc);
@@ -37,17 +40,17 @@ const Index = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen]);
   const highlights = [
-    { icon: Calendar, value: "१०+", label: "वर्षांची सेवा", color: "bg-primary/10 text-primary" },
-    { icon: Users, value: "७०००+", label: "कुटुंबे जोडलेली", color: "bg-accent/20 text-accent" },
-    { icon: Award, value: "२०२२", label: "नोंदणी वर्ष", color: "bg-primary/10 text-primary" },
-    { icon: MapPin, value: "१३", label: "तालुके समाविष्ट", color: "bg-accent/20 text-accent" },
+    { icon: Calendar, value: "१०+", label: t("वर्षांची सेवा", "Years of service"), color: "bg-primary/10 text-primary" },
+    { icon: Users, value: "७०००+", label: t("कुटुंबे जोडलेली", "Families connected"), color: "bg-accent/20 text-accent" },
+    { icon: Award, value: "२०२२", label: t("नोंदणी वर्ष", "Registered Year"), color: "bg-primary/10 text-primary" },
+    { icon: MapPin, value: "१३", label: t("तालुके समाविष्ट", "Talukas covered"), color: "bg-accent/20 text-accent" },
   ];
 
   const services = [
-    { icon: GraduationCap, title: "शैक्षणिक मदत", description: "स्पर्धा परीक्षा मार्गदर्शन व शिष्यवृत्ती" },
-    { icon: Briefcase, title: "नोकरी मार्गदर्शन", description: "विविध क्षेत्रातील तज्ञांकडून करिअर सल्ला" },
-    { icon: HandHeart, title: "सामाजिक सहाय्य", description: "आरोग्य, निवास व कायदेशीर मदत" },
-    { icon: Heart, title: "सांस्कृतिक कार्यक्रम", description: "जयंती, स्नेहसंमेलन व सांस्कृतिक सोहळे" },
+    { icon: GraduationCap, title: t("शैक्षणिक मदत", "Educational Help"), description: t("स्पर्धा परीक्षा मार्गदर्शन व शिष्यवृत्ती", "Competitive exam guidance and scholarships") },
+    { icon: Briefcase, title: t("नोकरी मार्गदर्शन", "Job Guidance"), description: t("विविध क्षेत्रातील तज्ञांकडून करिअर सल्ला", "Career counselling from experts") },
+    { icon: HandHeart, title: t("सामाजिक सहाय्य", "Social Support"), description: t("आरोग्य, निवास व कायदेशीर मदत", "Health, housing and legal assistance") },
+    { icon: Heart, title: t("सांस्कृतिक कार्यक्रम", "Cultural Events"), description: t("जयंती, स्नेहसंमेलन व सांस्कृतिक सोहळे", "Celebrations, meetups and cultural programs") },
   ];
 
   const announcements = [
@@ -88,30 +91,32 @@ const Index = () => {
             </div>
 
             <div className="text-center lg:text-left">
+              { /* translation helper */ }
+              {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+              {null}
               {/* Badge */}
               <div className="animate-fade-up opacity-0 mb-6">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent border border-accent/30 text-sm font-medium">
                   <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  नोंदणीकृत संस्था - धर्मदाय आयुक्त ठाणे
+                  {t('नोंदणीकृत संस्था - धर्मदाय आयुक्त ठाणे','Registered organisation - Thane')}
                 </span>
               </div>
 
               {/* Main Title */}
               <h1 className="animate-fade-up opacity-0 animation-delay-100 text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 marathi-title organization-name">
-                बुलढाणा जिल्हा बौद्ध रहिवासी
+                {t('बुलढाणा जिल्हा बौद्ध रहिवासी','Buldhana District Buddhist Residents')}
                 <br />
-                <span className="text-accent">समाज मंडळ मुंबई</span>
+                <span className="text-accent">{t('समाज मंडळ मुंबई','Association, Mumbai')}</span>
               </h1>
 
               {/* Tagline */}
               <p className="animate-fade-up opacity-0 animation-delay-200 text-xl md:text-2xl text-primary-foreground/80 mb-6 font-medium">
-                सविनय जयभीम 🙏
+                {t('सविनय जयभीम 🙏','Savinay Jai Bhim 🙏')}
               </p>
 
               {/* Description */}
               <p className="animate-fade-up opacity-0 animation-delay-300 max-w-3xl mx-auto text-primary-foreground/70 text-lg md:text-xl mb-10 leading-relaxed">
-                बुलढाणा जिल्ह्यातील धम्म बांधवांसाठी मुंबईत मदतीचा आधार -
-                नोकरी, शिक्षण, आरोग्य आणि सामाजिक सहाय्यासाठी केव्हाही संपर्क करा
+                {t('बुलढाणा जिल्ह्यातील धम्म बांधवांसाठी मुंबईत मदतीचा आधार -\nनोकरी, शिक्षण, आरोग्य आणि सामाजिक सहाय्यासाठी केव्हाही संपर्क करा','Support base in Mumbai for Buldhana residents – contact us for jobs, education, health and social help')}
               </p>
 
               {/* CTA Buttons */}
@@ -120,19 +125,19 @@ const Index = () => {
                   to="/get-help"
                   className="px-8 py-4 rounded-xl gradient-gold text-accent-foreground font-semibold text-lg shadow-gold hover-lift"
                 >
-                  मदत हवी आहे?
+                  {t('मदत हवी आहे?','Need Help?')}
                 </Link>
                 <Link
                   to="/join"
                   className="px-8 py-4 rounded-xl bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/30 font-semibold text-lg hover:bg-primary-foreground/20 transition-colors"
                 >
-                  सभासद बना
+                  {t('सभासद बना','Become Member')}
                 </Link>
                 <Link
                   to="/donate"
                   className="px-8 py-4 rounded-xl bg-primary-foreground text-primary font-semibold text-lg hover:bg-primary-foreground/90 transition-colors"
                 >
-                  देणगी द्या
+                  {t('देणगी द्या','Donate')}
                 </Link>
               </div>
 
@@ -156,13 +161,13 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              आमची सेवा
+              {t('आमची सेवा','Our Services')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              शैक्षणिक • सामाजिक • सांस्कृतिक
+              {t('शैक्षणिक • सामाजिक • सांस्कृतिक','Educational • Social • Cultural')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              मुंबईला येणाऱ्या प्रत्येक बुलढाणावासियाला योग्य मदत मिळावी हे आमचे ध्येय
+              {t('मुंबईला येणाऱ्या प्रत्येक बुलढाणावासियाला योग्य मदत मिळावी हे आमचे ध्येय','Our goal is to help every Buldhana resident who comes to Mumbai')}
             </p>
           </div>
 
@@ -180,7 +185,7 @@ const Index = () => {
 
           <div className="text-center mt-10">
             <Link to="/objectives" className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
-              सर्व सेवा पहा <ArrowRight className="w-4 h-4" />
+              {t('सर्व सेवा पहा','See all services')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -193,10 +198,10 @@ const Index = () => {
             {/* Announcements */}
             <div>
               <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent-foreground text-sm font-medium mb-4">
-                ताज्या बातम्या
+                {t('ताज्या बातम्या','Latest News')}
               </span>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-                आगामी कार्यक्रम
+                {t('आगामी कार्यक्रम','Upcoming Events')}
               </h2>
               <div className="space-y-4">
                 {announcements.map((item, index) => (
@@ -237,7 +242,7 @@ const Index = () => {
                         </span>
                         {item.urgent && (
                           <span className="px-2 py-0.5 rounded-full bg-accent text-accent-foreground text-xs font-medium">
-                            आगामी
+                            {t('आगामी', 'Upcoming')}
                           </span>
                         )}
                       </div>
@@ -246,19 +251,19 @@ const Index = () => {
                       {item.featured && (
                         <div className="mt-3 pt-3 border-t border-accent/20">
                           <p className="text-xs text-accent font-medium">
-                            सहयोग राशी: ₹१००० प्रति कुटुंब • प्रमुख पाहुणे: डॉ भीमराव आंबेडकर, आनंदराज आंबेडकर साहेब
+                            {t('सहयोग राशी: ₹१००० प्रति कुटुंब • प्रमुख पाहुणे: डॉ भीमराव आंबेडकर, आनंदराज आंबेडकर साहेब', 'Contribution: ₹1000 per family • Chief Guests: Dr. Bhimrao Ambedkar, Anandraj Ambedkar')}
                           </p>
                         </div>
                       )}
                       <div className="mt-3 flex items-center text-xs text-primary font-medium">
-                        अधिक माहिती <ArrowRight className="w-3 h-3 ml-1" />
+                        {t('अधिक माहिती', 'More Info')} <ArrowRight className="w-3 h-3 ml-1" />
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
               <Link to="/events" className="inline-flex items-center gap-2 text-primary font-medium mt-6 hover:gap-3 transition-all">
-                सर्व कार्यक्रम पहा <ArrowRight className="w-4 h-4" />
+                {t('सर्व कार्यक्रम पहा', 'View All Events')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
@@ -271,28 +276,27 @@ const Index = () => {
               />
               <div className="p-8 gradient-hero">
                 <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-                  बुलढाणा भवन प्रकल्प
+                  {t('बुलढाणा भवन प्रकल्प', 'Buldhana Bhavan Project')}
                 </h2>
                 <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-                  मुंबईत बुलढाणावासियांसाठी स्वतःचे केंद्र - निवासी अभ्यासिका, ग्रंथालय,
-                  सभागृह आणि तज्ञ मार्गदर्शन केंद्र.
+                  {t('मुंबईत बुलढाणावासियांसाठी स्वतःचे केंद्र - निवासी अभ्यासिका, ग्रंथालय, सभागृह आणि तज्ञ मार्गदर्शन केंद्र.', 'Our own center for Buldhana residents in Mumbai - hostel, library, auditorium and expert guidance center.')}
                 </p>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="text-center">
                     <p className="text-2xl font-bold text-accent">₹५ लाख+</p>
-                    <p className="text-xs text-primary-foreground/70">निधी संकलित</p>
+                    <p className="text-xs text-primary-foreground/70">{t('निधी संकलित', 'Funds Collected')}</p>
                   </div>
                   <div className="h-10 w-px bg-primary-foreground/30" />
                   <div className="text-center">
                     <p className="text-2xl font-bold text-primary-foreground">२०२४</p>
-                    <p className="text-xs text-primary-foreground/70">चॅरिटी शो</p>
+                    <p className="text-xs text-primary-foreground/70">{t('चॅरिटी शो', 'Charity Show')}</p>
                   </div>
                 </div>
                 <Link
                   to="/bhavan"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-gold text-accent-foreground font-semibold shadow-gold hover-lift"
                 >
-                  अधिक जाणून घ्या <ArrowRight className="w-4 h-4" />
+                  {t('अधिक जाणून घ्या', 'Learn More')} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -305,25 +309,24 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center p-8 md:p-12 rounded-3xl bg-gradient-to-br from-primary/5 via-background to-accent/5 border border-border">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              मदत हवी आहे का? आत्ताच संपर्क करा!
+              {t('मदत हवी आहे का? आत्ताच संपर्क करा!', 'Need Help? Contact Us Now!')}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              आमच्या मंडळामध्ये डॉक्टर, इंजिनीयर, वकील, बिल्डर, उद्योजक तसेच
-              मंत्रालयात मोठ्या पदावर अनेक लोक काम करतात.
+              {t('आमच्या मंडळामध्ये डॉक्टर, इंजिनीयर, वकील, बिल्डर, उद्योजक तसेच मंत्रालयात मोठ्या पदावर अनेक लोक काम करतात.', 'Our organization has doctors, engineers, lawyers, builders, entrepreneurs and many people in senior government positions.')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/get-help"
                 className="px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover-lift"
               >
-                मदत मागा
+                {t('मदत मागा', 'Ask for Help')}
               </Link>
               <a
                 href="tel:+919702777927"
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                फोन करा
+                {t('फोन करा', 'Call')}
               </a>
             </div>
           </div>

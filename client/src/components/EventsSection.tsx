@@ -1,42 +1,53 @@
 import { Calendar, Users, Award, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useI18n } from "@/lib/i18n";
 
 const EventsSection = () => {
+  const { t} = useI18n();
+
   const upcomingEvent = {
-    title: "वार्षिक स्नेहसंमेलन २०२६",
-    date: "१ फेब्रुवारी २०२६",
-    time: "सकाळी ९:०० ते ४:००",
-    venue: "डॉ. बाबासाहेब आंबेडकर भवन, गोकुळदास पास्ता लेन, दादर (पूर्व), मुंबई",
+    title: t("वार्षिक स्नेहसंमेलन २०२६", "Annual Sneh Sammelan 2026"),
+    date: t("१ फेब्रुवारी २०२६", "1 February 2026"),
+    time: t("सकाळी ९:०० ते ४:००", "9:00 AM to 4:00 PM"),
+    venue: t("डॉ. बाबासाहेब आंबेडकर भवन, गोकुळदास पास्ता लेन, दादर (पूर्व), मुंबई", "Dr. Babasaheb Ambedkar Hall, Gokulda's Pasta Lane, Dadar (East), Mumbai"),
     specialGuests: [
-      "मा. डॉ. भीमराव आंबेडकर (राष्ट्रीय ट्रस्टी कार्याध्यक्ष - भारतीय बौद्ध महासभा)",
-      "मा. सरसेनानी आनंदराज आंबेडकर (सभापती - बौद्धजन पंचायत समिती)"
+      t("मा. डॉ. भीमराव आंबेडकर (राष्ट्रीय ट्रस्टी कार्याध्यक्ष - भारतीय बौद्ध महासभा)", "Dr. Bhimrao Ambedkar (National Trustee President - Indian Buddhist Association)"),
+      t("मा. सरसेनानी आनंदराज आंबेडकर (सभापती - बौद्धजन पंचायत समिती)", "Anandraj Ambedkar (President - Buddhist Community Council)")
     ],
-    fee: "₹ १,००० प्रति कुटुंब"
+    fee: t("₹ १,००० प्रति कुटुंब", "₹1,000 per family")
   };
 
   const events = [
     {
       year: "2018",
-      title: "पहिले स्नेहसंमेलन - पनवेल",
-      date: "१६ सप्टेंबर २०१८",
-      description: "३७५+ बुलढाणावासियांचा सहभाग. मेरिट विद्यार्थ्यांना पारितोषिक वितरण.",
-      guests: ["मा. डी. डी. बांगर (से. नि. संचालक RBI)", "मा. गुलाबराव अवसरमोल (से. नि. न्यायाधीश)", "मा. एच. बी. तायडे (से. नि. सहसचिव गृह मंत्रालय)"],
+      title: t("पहिले स्नेहसंमेलन - पनवेल", "First Sneh Sammelan - Panvel"),
+      date: t("१६ सप्टेंबर २०१८", "16 September 2018"),
+      description: t("३७५+ बुलढाणावासियांचा सहभाग. मेरिट विद्यार्थ्यांना पारितोषिक वितरण.", "375+ Buldhana residents participated. Merit scholarships awarded."),
+      guests: [
+        t("मा. डी. डी. बांगर (से. नि. संचालक RBI)", "D. D. Bangar (Ret. Director RBI)"),
+        t("मा. गुलाबराव अवसरमोल (से. नि. न्यायाधीश)", "Gulabrao Avsarmoal (Ret. Judge)"),
+        t("मा. एच. बी. तायडे (से. नि. सहसचिव गृह मंत्रालय)", "H. B. Tyde (Ret. Secretary Home Ministry)")
+      ],
       highlight: true
     },
     {
       year: "2024",
-      title: "चॅरिटी शो - मुलुंड",
-      date: "२०२४",
-      description: "बुलढाणा भवनासाठी निधी संकलन. जवळपास ₹५ लाख निधी प्राप्त.",
+      title: t("चॅरिटी शो - मुलुंड", "Charity Show - Mulund"),
+      date: t("२०२४", "2024"),
+      description: t("बुलढाणा भवनासाठी निधी संकलन. जवळपास ₹५ लाख निधी प्राप्त.", "Fundraising for Buldhana Bhavan. Nearly ₹500k raised."),
       guests: [],
       highlight: false
     },
     {
       year: "2025",
-      title: "शिक्षक दिन - जुईनगर",
-      date: "२८ नोव्हेंबर २०२५",
-      description: "महात्मा ज्योतिबा फुले स्मृतिदिन. ४०+ आदर्श शिक्षक पुरस्कार.",
-      guests: ["मा. आयु. कैलास पगारे साहेब (आयुक्त बाल व महिला)", "डॉ. कैलास गायकवाड (उपायुक्त नवी मुंबई)", "मा. संघरत्न खिल्लारे (उपायुक्त शिक्षण विभाग)"],
+      title: t("शिक्षक दिन - जुईनगर", "Teacher's Day - Juinagar"),
+      date: t("२८ नोव्हेंबर २०२५", "28 November 2025"),
+      description: t("महात्मा ज्योतिबा फुले स्मृतिदिन. ४०+ आदर्श शिक्षक पुरस्कार.", "Jyotirao Phule Memorial Day. 40+ exemplary teacher awards."),
+      guests: [
+        t("मा. आयु. कैलास पगारे साहेब (आयुक्त बाल व महिला)", "Kailash Pagare (Commissioner Child & Women)"),
+        t("डॉ. कैलास गायकवाड (उपायुक्त नवी मुंबई)", "Dr. Kailash Gaikwad (Deputy Commissioner Navi Mumbai)"),
+        t("मा. संघरत्न खिल्लारे (उपायुक्त शिक्षण विभाग)", "Sangharatan Khillare (Deputy Commissioner Education)")
+      ],
       highlight: true
     }
   ];
@@ -51,7 +62,7 @@ const EventsSection = () => {
           
           <div className="relative z-10">
             <span className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-semibold mb-4">
-              आगामी कार्यक्रम
+              {t("आगामी कार्यक्रम", "Upcoming Event")}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{upcomingEvent.title}</h2>
             
@@ -74,7 +85,7 @@ const EventsSection = () => {
               <div>
                 <p className="text-accent font-semibold mb-2 flex items-center gap-2">
                   <Star className="w-4 h-4 fill-accent" />
-                  विशेष पाहुणे:
+                  {t("विशेष पाहुणे:", "Special Guests:")}
                 </p>
                 <ul className="space-y-1 text-sm">
                   {upcomingEvent.specialGuests.map((guest, i) => (
@@ -92,13 +103,13 @@ const EventsSection = () => {
                 to="/donate" 
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-gold text-accent-foreground font-semibold shadow-gold hover-lift"
               >
-                नोंदणी करा
+                {t("नोंदणी करा", "Register")}
               </Link>
               <Link 
                 to="/contact" 
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 text-primary-foreground font-semibold hover:bg-white/30 transition-colors"
               >
-                अधिक माहिती
+                {t("अधिक माहिती", "More Info")}
               </Link>
             </div>
           </div>
@@ -107,14 +118,13 @@ const EventsSection = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent-foreground text-sm font-medium mb-4">
-            कार्यक्रम
+            {t("कार्यक्रम", "Events")}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            आमचे <span className="text-accent">प्रमुख कार्यक्रम</span>
+            {t("आमचे", "Our")} <span className="text-accent">{t("प्रमुख कार्यक्रम", "Major Events")}</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            प्रत्येक वर्षी आम्ही स्नेहसंमेलन, डॉ. बाबासाहेब आंबेडकर जयंती, 
-            आणि विविध सांस्कृतिक कार्यक्रमांचे आयोजन करतो.
+            {t("प्रत्येक वर्षी आम्ही स्नेहसंमेलन, डॉ. बाबासाहेब आंबेडकर जयंती, आणि विविध सांस्कृतिक कार्यक्रमांचे आयोजन करतो.", "Every year we organize Sneh Sammelans, Dr. Babasaheb Ambedkar celebrations, and various cultural programs.")}
           </p>
         </div>
 
@@ -153,7 +163,7 @@ const EventsSection = () => {
                 {event.highlight && (
                   <div className="flex items-center gap-1 mb-2">
                     <Star className="w-4 h-4 text-accent fill-accent" />
-                    <span className="text-xs text-accent font-medium">विशेष कार्यक्रम</span>
+                    <span className="text-xs text-accent font-medium">{t("विशेष कार्यक्रम", "Special Event")}</span>
                   </div>
                 )}
 
@@ -172,7 +182,7 @@ const EventsSection = () => {
                   <div className="mt-4 pt-4 border-t border-border">
                     <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
                       <Award className="w-3 h-3" />
-                      प्रमुख पाहुणे:
+                      {t("प्रमुख पाहुणे:", "Chief Guests:")}
                     </p>
                     <ul className="text-sm text-foreground space-y-1">
                       {event.guests.slice(0, 3).map((guest, gIndex) => (
@@ -199,10 +209,10 @@ const EventsSection = () => {
               <div className="w-12 h-12 rounded-xl gradient-hero flex items-center justify-center">
                 <Star className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-bold text-foreground">डॉ. बाबासाहेब आंबेडकर जयंती</h3>
+              <h3 className="text-lg font-bold text-foreground">{t("डॉ. बाबासाहेब आंबेडकर जयंती", "Dr. Babasaheb Ambedkar Jayanti")}</h3>
             </div>
             <p className="text-muted-foreground">
-              प्रत्येक वर्षी १४ एप्रिलला मोठ्या थाटामाटात साजरी करण्यात येते.
+              {t("प्रत्येक वर्षी १४ एप्रिलला मोठ्या थाटामाटात साजरी करण्यात येते.", "Celebrated grandly every year on 14th April.")}
             </p>
           </div>
 
@@ -211,10 +221,10 @@ const EventsSection = () => {
               <div className="w-12 h-12 rounded-xl gradient-gold flex items-center justify-center">
                 <Users className="w-6 h-6 text-accent-foreground" />
               </div>
-              <h3 className="text-lg font-bold text-foreground">वार्षिक स्नेहसंमेलन</h3>
+              <h3 className="text-lg font-bold text-foreground">{t("वार्षिक स्नेहसंमेलन", "Annual Sneh Sammelan")}</h3>
             </div>
             <p className="text-muted-foreground">
-              मुंबईच्या विविध उपनगरांमध्ये दरवर्षी स्नेहसंमेलनाचे आयोजन.
+              {t("मुंबईच्या विविध उपनगरांमध्ये दरवर्षी स्नेहसंमेलनाचे आयोजन.", "Organized annually across various Mumbai suburbs.")}
             </p>
           </div>
         </div>

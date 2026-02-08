@@ -1,18 +1,21 @@
 import { Newspaper, ExternalLink, Calendar, Image, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
+import { useI18n } from "@/lib/i18n";
 
 // Import newspaper cuttings
 import newspaperCutting1 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-01-29 at 1.53.41 PM.jpeg";
 import newspaperCutting2 from "@/assets/newspaper_cuttings/WhatsApp Image 2026-01-29 at 1.53.42 PM.jpeg";
 
 const News = () => {
+  const { t } = useI18n();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Import newspaper cuttings
   const newspaperImages = [
-    { src: newspaperCutting1, title: "वृत्तपत्र कव्हरेज १", description: "मंडळाच्या कार्यक्रमाचे वृत्तपत्र कव्हरेज" },
-    { src: newspaperCutting2, title: "वृत्तपत्र कव्हरेज २", description: "स्नेहसंमेलन कार्यक्रमाची बातमी" }
+    { src: newspaperCutting1, title: t("वृत्तपत्र कव्हरेज १", "Newspaper Coverage 1"), description: t("मंडळाच्या कार्यक्रमाचे वृत्तपत्र कव्हरेज", "Newspaper coverage of the organization's programs") },
+    { src: newspaperCutting2, title: t("वृत्तपत्र कव्हरेज २", "Newspaper Coverage 2"), description: t("स्नेहसंमेलन कार्यक्रमाची बातमी", "News coverage of Sneh Sammelan event") }
   ];
 
   const openModal = (index: number) => {
@@ -58,25 +61,25 @@ const News = () => {
   }, [isModalOpen, selectedImageIndex]);
   const newsItems = [
     {
-      title: "बुलढाणा जिल्हा बौद्ध रहिवाशी समाज मंडळ मुंबई चे वार्षिक स्नेहसंमेलन",
-      description: "आंबेडकर भवन दादर मुंबई येथे आयोजित करण्यात आले आहे.",
-      source: "सागर लता न्यूज",
-      date: "जानेवारी २०२६",
+      title: t("बुलढाणा जिल्हा बौद्ध रहिवाशी समाज मंडळ मुंबई चे वार्षिक स्नेहसंमेलन", "Annual Sneh Sammelan of Buldhana District Buddhist Residents Society Mumbai"),
+      description: t("आंबेडकर भवन दादर मुंबई येथे आयोजित करण्यात आले आहे.", "Held at Ambedkar Bhavan Dadar Mumbai."),
+      source: t("सागर लता न्यूज", "Sagar Lata News"),
+      date: t("जानेवारी २०२६", "January 2026"),
       link: "https://sagarlatanews.com/?p=2047",
       featured: true
     },
-    { title: "शिक्षक दिन सोहळा २०२५ - जुईनगर", source: "विविध वृत्तपत्रे", date: "नोव्हेंबर २०२५" },
-    { title: "चॅरिटी शो मुलुंड - बुलढाणा भवन निधी", source: "स्थानिक प्रसारमाध्यमे", date: "२०२४" },
-    { title: "पहिले स्नेहसंमेलन पनवेल", source: "विविध वृत्तपत्रे", date: "सप्टेंबर २०१८" },
+    { title: t("शिक्षक दिन सोहळा २०२५ - जुईनगर", "Teacher's Day Celebration 2025 - Juinagar"), source: t("विविध वृत्तपत्रे", "Various Newspapers"), date: t("नोव्हेंबर २०२५", "November 2025") },
+    { title: t("चॅरिटी शो मुलुंड - बुलढाणा भवन निधी", "Charity Show Mulund - Buldhana Bhavan Fund"), source: t("स्थानिक प्रसारमाध्यमे", "Local Media"), date: t("२०२४", "2024") },
+    { title: t("पहिले स्नेहसंमेलन पनवेल", "First Sneh Sammelan Panvel"), source: t("विविध वृत्तपत्रे", "Various Newspapers"), date: t("सप्टेंबर २०१८", "September 2018") },
   ];
 
   return (
     <Layout>
       <section className="py-20 gradient-hero">
         <div className="container mx-auto px-4 text-center">
-          <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">बातम्या</span>
+          <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">{t("बातम्या", "News")}</span>
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            बातम्या आणि <span className="text-gradient">प्रसारमाध्यमे</span>
+            {t("बातम्या आणि", "News and")} <span className="text-gradient">{t("प्रसारमाध्यमे", "Media Coverage")}</span>
           </h1>
         </div>
       </section>

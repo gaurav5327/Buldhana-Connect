@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Download, Share2 } from "lucide-react";
 import Layout from "@/components/Layout";
+import { useI18n } from "@/lib/i18n";
 import snehsammelanPoster from "@/assets/snehsammelan-2026-poster.jpeg";
 
 // Import all gallery images
@@ -91,6 +92,7 @@ import img84 from "@/assets/images/WhatsApp Image 2026-01-29 at 7.13.00 PM (2).j
 import img85 from "@/assets/images/WhatsApp Image 2026-01-29 at 7.13.00 PM.jpeg";
 
 const Gallery = () => {
+  const { t } = useI18n();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -109,11 +111,11 @@ const Gallery = () => {
 
   // Gallery items with all images plus existing ones
   const galleryItems = [
-    { id: 1, title: "स्नेहसंमेलन २०२६ - निमंत्रण पत्रिका", year: "२०२६", image: snehsammelanPoster },
+    { id: 1, title: t("स्नेहसंमेलन २०२६ - निमंत्रण पत्रिका", "Sneh Sammelan 2026 - Invitation Card"), year: "२०२६", image: snehsammelanPoster },
     // Add all gallery images
     ...allImages.map((img, index) => ({
       id: index + 7,
-      title: `गॅलरी फोटो ${index + 1}`,
+      title: t("गॅलरी फोटो", "Gallery Photo") + ` ${index + 1}`,
       year: "२०२४",
       image: img
     }))
@@ -190,13 +192,13 @@ const Gallery = () => {
       <section className="py-20 gradient-hero">
         <div className="container mx-auto px-4 text-center">
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
-            गॅलरी
+            {t("गॅलरी", "Gallery")}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            फोटो आणि <span className="text-accent">व्हिडिओ</span> गॅलरी
+            {t("फोटो आणि", "Photos and")} <span className="text-accent">{t("व्हिडिओ", "Video")}</span> {t("गॅलरी", "Gallery")}
           </h1>
           <p className="max-w-3xl mx-auto text-primary-foreground/80 text-lg">
-            आमच्या विविध कार्यक्रमांचे क्षण - स्नेहसंमेलन, पुरस्कार सोहळे, जयंती आणि बरेच काही
+            {t("आमच्या विविध कार्यक्रमांचे क्षण - स्नेहसंमेलन, पुरस्कार सोहळे, जयंती आणि बरेच काही", "Moments from our various events - Sneh Sammelan, award ceremonies, anniversaries and much more")}
           </p>
         </div>
       </section>

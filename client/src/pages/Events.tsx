@@ -2,12 +2,15 @@ import { Calendar, MapPin, Users, Award, Star, ArrowRight, X, Clock, Phone } fro
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import { useI18n } from '@/lib/i18n';
 
 // Import event images
 import varshikSahsamelan2023Img from "@/assets/varshik_sahsamelan2023.jpg";
 
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const { t } = useI18n();
 
   const openEventDetails = (event) => {
     setSelectedEvent(event);
@@ -136,14 +139,16 @@ const Events = () => {
       {/* Hero */}
       <section className="py-20 gradient-hero">
         <div className="container mx-auto px-4 text-center">
+          {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+          {null}
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">
-            कार्यक्रम
+            {t('कार्यक्रम','Events')}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            आमचे <span className="text-gradient">कार्यक्रम</span> व <span className="text-accent">सोहळे</span>
+            {t('आमचे','Our')} <span className="text-gradient">{t('कार्यक्रम','Events')}</span> {t('व','and')} <span className="text-accent">{t('सोहळे','Celebrations')}</span>
           </h1>
           <p className="max-w-3xl mx-auto text-primary-foreground/80 text-lg">
-            स्नेहसंमेलन, जयंती सोहळे, शिक्षक दिन आणि विविध सांस्कृतिक कार्यक्रमांचे आयोजन
+            {t('स्नेहसंमेलन, जयंती सोहळे, शिक्षक दिन आणि विविध सांस्कृतिक कार्यक्रमांचे आयोजन','Meetups, anniversaries, Teacher Day and various cultural events')}
           </p>
         </div>
       </section>
@@ -153,10 +158,10 @@ const Events = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent-foreground text-sm font-medium mb-4">
-              आगामी कार्यक्रम
+              {t('आगामी कार्यक्रम','Upcoming Events')}
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              येणारे कार्यक्रम
+              {t('येणारे कार्यक्रम','Coming Events')}
             </h2>
           </div>
 
@@ -242,10 +247,10 @@ const Events = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              मागील कार्यक्रम
+              {t('मागील कार्यक्रम','Past Events')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              प्रमुख कार्यक्रम
+              {t('प्रमुख कार्यक्रम','Major Events')}
             </h2>
           </div>
 
